@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -30,6 +30,7 @@ jobs:
             cd github/express-app
             git reset --hard
             git clean -df
+            git checkout main
             git pull origin main
             npm install
             pm2 start npm --name "express-app" -- start
