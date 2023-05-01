@@ -35,5 +35,10 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          whoami
-          ls -al
+          pm2 delete all
+          cd github/express-app
+          git reset --hard
+          git clean -df
+          git pull origin master
+          npm install
+          pm2 start app.js
